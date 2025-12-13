@@ -235,7 +235,7 @@ export default function Index() {
 
               <Button
                 variant="outline"
-                className="w-full border-gray-600 text-gray-300 hover:bg-gray-700 hover:text-white font-semibold py-6 text-base transition-colors"
+                className="w-full bg-white text-gray-900 hover:bg-gray-100 font-semibold py-6 text-base transition-colors border-0"
                 onClick={() => alert("View Full Product Catalog")}
               >
                 View Full Product Catalog
