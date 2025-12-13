@@ -1,5 +1,12 @@
 import { Button } from "@/components/ui/button";
-import { CheckCircle2, Menu, X, Share2, MoreVertical, Globe } from "lucide-react";
+import {
+  CheckCircle2,
+  Menu,
+  X,
+  Share2,
+  MoreVertical,
+  Globe,
+} from "lucide-react";
 import { useState } from "react";
 
 type Language = "el" | "en";
@@ -35,7 +42,8 @@ const mockData: TraceabilityData = {
   productNameGr: "Ελληνική Τσιπούρα",
   lotNumber: "GR-TS-1210",
   company: "ATLANTIDA S.A. TOURNAVITIS",
-  productImage: "https://images.unsplash.com/photo-1517457373614-b7152f800fd1?w=500&h=500&fit=crop",
+  productImage:
+    "https://images.unsplash.com/photo-1517457373614-b7152f800fd1?w=500&h=500&fit=crop",
   originMethod: "Farmed / Aquaculture",
   originMethodGr: "Ιχθυοκαλλιέργεια",
   geographicOrigin: "Euboea, Greece",
@@ -77,7 +85,8 @@ const labels = {
     traceabilityReport: "Traceability Report",
     processingQuality: "Processing Quality guaranteed by",
     certifications: "Certifications",
-    processingStatement: "The product processing took place at the Kavala facilities, with BRCGS certification.",
+    processingStatement:
+      "The product processing took place at the Kavala facilities, with BRCGS certification.",
     origin: "Origin",
     productName: "Product Name",
     originMethod: "Origin Method",
@@ -105,7 +114,8 @@ const labels = {
     traceabilityReport: "Αναφορά Ιχνηλασιμότητας",
     processingQuality: "Η ποιότητα επεξεργασίας εγγυάται",
     certifications: "Πιστοποιήσεις",
-    processingStatement: "Η επεξεργασία του προϊόντος έγινε στις εγκαταστάσεις της Καβάλας, με πιστοποίηση BRCGS.",
+    processingStatement:
+      "Η επεξεργασία του προϊόντος έγινε στις εγκαταστάσεις της Καβάλας, με πιστοποίηση BRCGS.",
     origin: "Προέλευση",
     productName: "Όνομα Προϊόντος",
     originMethod: "Μέθοδος Προέλευσης",
@@ -166,21 +176,73 @@ export default function Index() {
   };
 
   const originData = [
-    { en: "Product Name", el: "Όνομα Προϊόντος", value: language === "el" ? mockData.productNameGr : mockData.productName },
-    { en: "Origin Method", el: "Μέθοδος Προέλευσης", value: language === "el" ? mockData.originMethodGr : mockData.originMethod },
-    { en: "Geographic Origin", el: "Γεωγραφική Προέλευση", value: language === "el" ? mockData.geographicOriginGr : mockData.geographicOrigin },
-    { en: "Harvest Date", el: "Ημερομηνία Συγκομιδής", value: mockData.harvestDate },
-    { en: "Processing Date", el: "Ημερομηνία Επεξεργασίας", value: mockData.processingDate },
-    { en: "Best Before Date", el: "Ημερομηνία Λήξης", value: mockData.bestBeforeDate },
+    {
+      en: "Product Name",
+      el: "Όνομα Προϊόντος",
+      value: language === "el" ? mockData.productNameGr : mockData.productName,
+    },
+    {
+      en: "Origin Method",
+      el: "Μέθοδος Προέλευσης",
+      value:
+        language === "el" ? mockData.originMethodGr : mockData.originMethod,
+    },
+    {
+      en: "Geographic Origin",
+      el: "Γεωγραφική Προέλευση",
+      value:
+        language === "el"
+          ? mockData.geographicOriginGr
+          : mockData.geographicOrigin,
+    },
+    {
+      en: "Harvest Date",
+      el: "Ημερομηνία Συγκομιδής",
+      value: mockData.harvestDate,
+    },
+    {
+      en: "Processing Date",
+      el: "Ημερομηνία Επεξεργασίας",
+      value: mockData.processingDate,
+    },
+    {
+      en: "Best Before Date",
+      el: "Ημερομηνία Λήξης",
+      value: mockData.bestBeforeDate,
+    },
   ];
 
   const techData = [
     { en: "Size Grade", el: "Κατηγορία Μεγέθους", value: mockData.sizeGrade },
-    { en: "Format", el: "Μορφή Προϊόντος", value: language === "el" ? mockData.formatGr : mockData.format },
-    { en: "Freezing Type", el: "Τύπος Κατάψυξης", value: mockData.freezingType },
-    { en: "Ice Coating %", el: "Ποσοστό Επί Πάγου", value: mockData.iceCoatingPercentage },
-    { en: "Processing Location", el: "Εγκατάσταση Επεξεργασίας", value: language === "el" ? mockData.processingLocationGr : mockData.processingLocation },
-    { en: "Origin Status", el: "Κατάσταση Προέλευσης", value: language === "el" ? mockData.originStatusGr : mockData.originStatus },
+    {
+      en: "Format",
+      el: "Μορφή Προϊόντος",
+      value: language === "el" ? mockData.formatGr : mockData.format,
+    },
+    {
+      en: "Freezing Type",
+      el: "Τύπος Κατάψυξης",
+      value: mockData.freezingType,
+    },
+    {
+      en: "Ice Coating %",
+      el: "Ποσοστό Επί Πάγου",
+      value: mockData.iceCoatingPercentage,
+    },
+    {
+      en: "Processing Location",
+      el: "Εγκατάσταση Επεξεργασίας",
+      value:
+        language === "el"
+          ? mockData.processingLocationGr
+          : mockData.processingLocation,
+    },
+    {
+      en: "Origin Status",
+      el: "Κατάσταση Προέλευσης",
+      value:
+        language === "el" ? mockData.originStatusGr : mockData.originStatus,
+    },
   ];
 
   return (
@@ -251,7 +313,9 @@ export default function Index() {
                 title="Toggle Language"
               >
                 <Globe size={20} />
-                <span className="text-sm font-bold">{language.toUpperCase()}</span>
+                <span className="text-sm font-bold">
+                  {language.toUpperCase()}
+                </span>
               </button>
               <button className="p-2 hover:bg-navy-light rounded-lg transition-colors">
                 <MoreVertical size={20} />
@@ -276,11 +340,15 @@ export default function Index() {
                   <h2 className="text-3xl lg:text-4xl font-bold leading-tight mb-2 text-navy">
                     {t.traceabilityReport}:<br />
                     <span className="text-cyan block mt-1">
-                      {language === "el" ? mockData.productNameGr : mockData.productName}
+                      {language === "el"
+                        ? mockData.productNameGr
+                        : mockData.productName}
                     </span>
                   </h2>
                   <p className="text-sm lg:text-base font-medium text-gray-700 mt-2 mb-1">
-                    {language === "el" ? mockData.productNameGr : mockData.productName}
+                    {language === "el"
+                      ? mockData.productNameGr
+                      : mockData.productName}
                   </p>
                   <p className="text-lg lg:text-2xl font-bold text-navy">
                     Lot No: {mockData.lotNumber}
@@ -289,8 +357,12 @@ export default function Index() {
 
                 {/* Company and Quality Statement */}
                 <div className="pt-4 border-t border-gray-200">
-                  <p className="text-xs text-gray-600 font-medium mb-1">{t.processingQuality}</p>
-                  <p className="text-base font-bold text-navy">{mockData.company}</p>
+                  <p className="text-xs text-gray-600 font-medium mb-1">
+                    {t.processingQuality}
+                  </p>
+                  <p className="text-base font-bold text-navy">
+                    {mockData.company}
+                  </p>
                 </div>
 
                 {/* Certification Logos - Clean Professional Display */}
@@ -307,9 +379,13 @@ export default function Index() {
                         className="flex flex-col items-center justify-center p-3 border border-gray-300 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors"
                       >
                         <div className="w-16 h-16 flex items-center justify-center bg-white rounded border border-gray-200 mb-2">
-                          <span className="text-2xl font-bold text-navy">{cert.name.charAt(0)}</span>
+                          <span className="text-2xl font-bold text-navy">
+                            {cert.name.charAt(0)}
+                          </span>
                         </div>
-                        <span className="text-xs font-semibold text-center text-gray-700 leading-tight">{cert.name}</span>
+                        <span className="text-xs font-semibold text-center text-gray-700 leading-tight">
+                          {cert.name}
+                        </span>
                       </div>
                     ))}
                   </div>
@@ -326,12 +402,18 @@ export default function Index() {
             <section className="bg-white rounded-lg p-6 lg:p-8 border border-gray-200 shadow-sm overflow-hidden">
               <div className="mb-4">
                 <h3 className="text-lg font-bold text-navy mb-4">
-                  {language === "el" ? mockData.productNameGr : mockData.productName}
+                  {language === "el"
+                    ? mockData.productNameGr
+                    : mockData.productName}
                 </h3>
               </div>
               <img
                 src={mockData.productImage}
-                alt={language === "el" ? mockData.productNameGr : mockData.productName}
+                alt={
+                  language === "el"
+                    ? mockData.productNameGr
+                    : mockData.productName
+                }
                 className="w-full h-auto rounded-lg object-cover max-h-96"
               />
             </section>
@@ -348,8 +430,12 @@ export default function Index() {
                     key={idx}
                     className="flex justify-between items-center py-3 border-b border-gray-200 last:border-b-0"
                   >
-                    <span className="text-sm font-bold text-navy">{language === "el" ? item.el : item.en}</span>
-                    <span className="text-sm font-medium text-gray-700">{item.value}</span>
+                    <span className="text-sm font-bold text-navy">
+                      {language === "el" ? item.el : item.en}
+                    </span>
+                    <span className="text-sm font-medium text-gray-700">
+                      {item.value}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -367,8 +453,12 @@ export default function Index() {
                     key={idx}
                     className="flex justify-between items-center py-3 border-b border-gray-200 last:border-b-0"
                   >
-                    <span className="text-sm font-bold text-navy">{language === "el" ? item.el : item.en}</span>
-                    <span className="text-sm font-medium text-gray-700">{item.value}</span>
+                    <span className="text-sm font-bold text-navy">
+                      {language === "el" ? item.el : item.en}
+                    </span>
+                    <span className="text-sm font-medium text-gray-700">
+                      {item.value}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -376,12 +466,22 @@ export default function Index() {
               {/* Compliance Indicators */}
               <div className="pt-4 mt-4 space-y-2 border-t border-gray-200">
                 <div className="flex items-center gap-2">
-                  <CheckCircle2 size={18} className="text-green-600 flex-shrink-0" />
-                  <span className="text-sm font-medium text-gray-700">{t.foodSafety}</span>
+                  <CheckCircle2
+                    size={18}
+                    className="text-green-600 flex-shrink-0"
+                  />
+                  <span className="text-sm font-medium text-gray-700">
+                    {t.foodSafety}
+                  </span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle2 size={18} className="text-green-600 flex-shrink-0" />
-                  <span className="text-sm font-medium text-gray-700">{t.validUntil}</span>
+                  <CheckCircle2
+                    size={18}
+                    className="text-green-600 flex-shrink-0"
+                  />
+                  <span className="text-sm font-medium text-gray-700">
+                    {t.validUntil}
+                  </span>
                 </div>
               </div>
             </section>
@@ -392,7 +492,9 @@ export default function Index() {
                 {t.nutrition}
               </h3>
 
-              <p className="text-xs text-gray-600 mt-4 mb-4">{t.nutritionSource}</p>
+              <p className="text-xs text-gray-600 mt-4 mb-4">
+                {t.nutritionSource}
+              </p>
 
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
@@ -408,9 +510,16 @@ export default function Index() {
                   </thead>
                   <tbody>
                     {nutrition.map((item, idx) => (
-                      <tr key={idx} className="border-b border-gray-200 hover:bg-gray-50">
-                        <td className="py-3 px-3 font-medium text-gray-700">{item.label}</td>
-                        <td className="py-3 px-3 text-right text-gray-700">{item.value}</td>
+                      <tr
+                        key={idx}
+                        className="border-b border-gray-200 hover:bg-gray-50"
+                      >
+                        <td className="py-3 px-3 font-medium text-gray-700">
+                          {item.label}
+                        </td>
+                        <td className="py-3 px-3 text-right text-gray-700">
+                          {item.value}
+                        </td>
                       </tr>
                     ))}
                   </tbody>
@@ -433,14 +542,26 @@ export default function Index() {
             <section className="space-y-3 pb-8">
               <Button
                 className="w-full bg-navy hover:bg-navy-light text-white font-bold py-4 lg:py-5 text-base lg:text-lg rounded-lg shadow-md transition-all hover:shadow-lg"
-                onClick={() => alert(language === "el" ? "Επικοινωνία για παραγγελία" : "Contact for bulk order")}
+                onClick={() =>
+                  alert(
+                    language === "el"
+                      ? "Επικοινωνία για παραγγελία"
+                      : "Contact for bulk order",
+                  )
+                }
               >
                 {t.contactB2b}
               </Button>
 
               <Button
                 className="w-full bg-white text-navy border-2 border-navy font-bold py-4 lg:py-5 text-base lg:text-lg rounded-lg hover:bg-gray-50 transition-all"
-                onClick={() => alert(language === "el" ? "Προβολή καταλόγου προϊόντων" : "View product catalog")}
+                onClick={() =>
+                  alert(
+                    language === "el"
+                      ? "Προβολή καταλόγου προϊόντων"
+                      : "View product catalog",
+                  )
+                }
               >
                 {t.viewCatalog}
               </Button>
