@@ -160,14 +160,12 @@ export default function Index() {
                     {certifications.map((cert) => (
                       <div
                         key={cert.name}
-                        className="flex flex-col items-center justify-center"
+                        className="flex flex-col items-center justify-center p-3 border border-gray-300 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors"
                       >
-                        <img
-                          src={cert.url}
-                          alt={cert.name}
-                          className="w-20 h-20 object-contain mb-2"
-                        />
-                        <span className="text-xs font-semibold text-center text-gray-700">{cert.name}</span>
+                        <div className="w-16 h-16 flex items-center justify-center bg-white rounded border border-gray-200 mb-2">
+                          <span className="text-2xl font-bold text-navy">{cert.name.charAt(0)}</span>
+                        </div>
+                        <span className="text-xs font-semibold text-center text-gray-700 leading-tight">{cert.name}</span>
                       </div>
                     ))}
                   </div>
