@@ -138,8 +138,11 @@ export default function Index() {
                     Traceability Report:<br />
                     <span className="text-cyan block mt-1">Ελληνική Τσιπούρα</span>
                   </h2>
-                  <p className="text-base lg:text-lg font-bold text-navy mt-3">
-                    {mockData.productName} | Lot No: <span className="text-lg lg:text-xl">{mockData.lotNumber}</span>
+                  <p className="text-sm lg:text-base font-medium text-gray-700 mt-2 mb-1">
+                    {mockData.productName}
+                  </p>
+                  <p className="text-lg lg:text-2xl font-bold text-navy">
+                    Lot No: {mockData.lotNumber}
                   </p>
                 </div>
 
