@@ -39,10 +39,10 @@ const mockData: TraceabilityData = {
 };
 
 const certifications = [
-  { name: "BRCGS", url: "https://via.placeholder.com/80x80?text=BRCGS" },
-  { name: "IFS", url: "https://via.placeholder.com/80x80?text=IFS" },
-  { name: "ISO 22000", url: "https://via.placeholder.com/80x80?text=ISO" },
-  { name: "HACCP", url: "https://via.placeholder.com/80x80?text=HACCP" },
+  { name: "BRCGS" },
+  { name: "IFS" },
+  { name: "ISO 22000" },
+  { name: "HACCP" },
 ];
 
 const navItems = [
