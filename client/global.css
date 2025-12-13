@@ -58,12 +58,12 @@
 
     --sidebar-ring: 217.2 91.2% 59.8%;
 
-    --navy: 219 45% 15%;
-    --navy-light: 219 30% 25%;
-    --navy-dark: 219 50% 10%;
+    --navy: 220 25% 20%;
+    --navy-light: 220 25% 28%;
+    --navy-dark: 220 30% 12%;
 
-    --cyan: 186 100% 62%;
-    --cyan-light: 187 80% 80%;
+    --cyan: 184 100% 55%;
+    --cyan-light: 184 80% 75%;
   }
 
   .dark {
