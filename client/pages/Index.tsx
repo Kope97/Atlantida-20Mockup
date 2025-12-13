@@ -166,7 +166,7 @@ const nutritionData = [
 
 export default function Index() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [language, setLanguage] = useState<Language>("el");
+  const [language, setLanguage] = useState<Language>("en");
 
   const t = labels[language];
   const nutrition = nutritionData.filter((item) => item.name === language);
