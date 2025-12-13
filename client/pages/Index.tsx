@@ -22,7 +22,7 @@ const mockData: TraceabilityData = {
   productName: "Greek Seabream",
   lotNumber: "GR-TS-1210",
   company: "ATLANTIDA S.A. TOURNAVITIS",
-  productImage: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&h=400&fit=crop",
+  productImage: "https://images.unsplash.com/photo-1580959375944-abd7e991f971?w=400&h=400&fit=crop",
   originMethod: "Farmed / Aquaculture",
   geographicOrigin: "Euboea, Greece",
   harvestDate: "10/12/2025",
