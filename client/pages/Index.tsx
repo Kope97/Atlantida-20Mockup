@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { CheckCircle2, CheckCircle, Menu, X, Share2, MoreVertical } from "lucide-react";
+import { CheckCircle2, Menu, X, Share2, MoreVertical, Award } from "lucide-react";
 import { useState } from "react";
 
 interface TraceabilityData {
@@ -16,7 +16,8 @@ interface TraceabilityData {
   format: string;
   freezingType: string;
   glazePercentage: string;
-  certificationStatus: string;
+  processingLocation: string;
+  originStatus: string;
 }
 
 const mockData: TraceabilityData = {
@@ -33,14 +34,15 @@ const mockData: TraceabilityData = {
   format: "Whole, Gutted, Frozen",
   freezingType: "IQF",
   glazePercentage: "<5%",
-  certificationStatus: "ATLANTIDA S.A. Kavala",
+  processingLocation: "ATLANTIDA S.A., Kavala",
+  originStatus: "Εγκεκριμένος / GLOBALG.A.P.",
 };
 
 const certifications = [
-  { name: "BRCGS", color: "bg-blue-500" },
-  { name: "IFS", color: "bg-blue-500" },
-  { name: "ISO", color: "bg-blue-500" },
-  { name: "HACCP", color: "bg-green-500" },
+  { name: "BRCGS", icon: "🏆" },
+  { name: "IFS", icon: "✓" },
+  { name: "ISO 22000", icon: "⚙" },
+  { name: "HACCP", icon: "🛡" },
 ];
 
 const navItems = [
@@ -56,20 +58,20 @@ export default function Index() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
+    <div className="min-h-screen bg-gray-50 text-gray-900">
       {/* Mobile Header */}
-      <header className="lg:hidden sticky top-0 z-40 bg-gray-950 border-b border-gray-800 px-4 py-3 flex items-center justify-between">
+      <header className="lg:hidden sticky top-0 z-40 bg-navy text-white border-b border-gray-200 px-4 py-3 flex items-center justify-between shadow-sm">
         <button
           onClick={() => setSidebarOpen(!sidebarOpen)}
-          className="p-2 hover:bg-gray-800 rounded-lg transition-colors"
+          className="p-2 hover:bg-navy-light rounded-lg transition-colors"
         >
           {sidebarOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
         <div className="flex items-center gap-2">
-          <div className="w-5 h-5 bg-cyan rounded-full"></div>
-          <span className="font-semibold text-sm">ATLANTIDA</span>
+          <div className="w-5 h-5 bg-cyan rounded-full flex-shrink-0"></div>
+          <span className="font-bold text-base">ATLANTIDA</span>
         </div>
-        <button className="p-2 hover:bg-gray-800 rounded-lg transition-colors">
+        <button className="p-2 hover:bg-navy-light rounded-lg transition-colors">
           <MoreVertical size={20} />
         </button>
       </header>
@@ -77,13 +79,13 @@ export default function Index() {
       <div className="flex min-h-screen">
         {/* Sidebar */}
         <aside
-          className={`fixed lg:relative top-0 left-0 h-screen bg-gray-950 border-r border-gray-800 w-64 z-30 transform transition-transform duration-300 lg:transform-none
+          className={`fixed lg:relative top-0 left-0 h-screen bg-navy text-white w-64 z-30 transform transition-transform duration-300 lg:transform-none shadow-lg
             ${sidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}`}
         >
-          <div className="p-6 border-b border-gray-800">
+          <div className="p-6 border-b border-navy-light">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-cyan rounded-lg"></div>
-              <span className="font-bold">ATLANTIDA</span>
+              <div className="w-8 h-8 bg-cyan rounded-lg flex-shrink-0"></div>
+              <span className="font-bold text-lg">ATLANTIDA</span>
             </div>
           </div>
 
@@ -93,8 +95,8 @@ export default function Index() {
                 key={item.label}
                 className={`w-full text-left px-4 py-3 rounded-lg transition-colors ${
                   item.active
-                    ? "bg-gray-800 text-cyan font-semibold"
-                    : "text-gray-400 hover:bg-gray-800"
+                    ? "bg-cyan text-navy font-semibold"
+                    : "text-gray-200 hover:bg-navy-light"
                 }`}
               >
                 {item.label}
@@ -106,13 +108,13 @@ export default function Index() {
         {/* Main Content */}
         <main className="flex-1 overflow-auto">
           {/* Desktop Header */}
-          <header className="hidden lg:flex sticky top-0 z-20 bg-gray-950 border-b border-gray-800 px-8 py-4 items-center justify-between">
-            <h1 className="text-xl font-bold">Traceability Report</h1>
+          <header className="hidden lg:flex sticky top-0 z-20 bg-navy text-white border-b border-gray-200 px-8 py-4 items-center justify-between shadow-sm">
+            <h1 className="text-2xl font-bold">Traceability Report</h1>
             <div className="flex items-center gap-4">
-              <button className="p-2 hover:bg-gray-800 rounded-lg transition-colors">
+              <button className="p-2 hover:bg-navy-light rounded-lg transition-colors">
                 <Share2 size={20} />
               </button>
-              <button className="p-2 hover:bg-gray-800 rounded-lg transition-colors">
+              <button className="p-2 hover:bg-navy-light rounded-lg transition-colors">
                 <MoreVertical size={20} />
               </button>
             </div>
@@ -126,46 +128,56 @@ export default function Index() {
             />
           )}
 
-          <div className="p-4 lg:p-8 space-y-6">
+          <div className="p-4 lg:p-8 space-y-6 max-w-6xl mx-auto">
             {/* Product Header Section */}
-            <section className="bg-gray-800 rounded-lg p-6 border border-gray-700">
-              <div className="space-y-4">
+            <section className="bg-white rounded-lg p-6 lg:p-8 border border-gray-200 shadow-sm">
+              <div className="space-y-6">
+                {/* Title and Lot Number */}
                 <div>
-                  <h2 className="text-3xl font-bold leading-tight mb-2">
+                  <h2 className="text-3xl lg:text-4xl font-bold leading-tight mb-3 text-navy">
                     Traceability Report:<br />
-                    <span className="text-cyan">Ελληνική Τσιπούρα</span>
+                    <span className="text-cyan block mt-1">Ελληνική Τσιπούρα</span>
                   </h2>
-                  <p className="text-gray-400">
-                    {mockData.productName} | Lot No: {mockData.lotNumber}
+                  <p className="text-lg font-semibold text-navy">
+                    {mockData.productName} | <span className="font-bold">Lot No: {mockData.lotNumber}</span>
                   </p>
                 </div>
 
-                <div>
-                  <p className="text-sm text-gray-400 mb-1">Processing Quality guaranteed by</p>
-                  <p className="font-semibold text-lg">{mockData.company}</p>
+                {/* Company and Quality Statement */}
+                <div className="pt-4 border-t border-gray-200">
+                  <p className="text-sm text-gray-600 font-medium mb-2">Processing Quality guaranteed by</p>
+                  <p className="text-lg font-bold text-navy">{mockData.company}</p>
                 </div>
 
-                {/* Certification Logos */}
-                <div className="pt-4 border-t border-gray-700">
-                  <p className="text-xs font-semibold text-gray-400 mb-4">
-                    Πιστοποιήσεις & Πιστοποιήσεις
+                {/* Certification Logos - Clean Design */}
+                <div className="pt-4 border-t border-gray-200">
+                  <p className="text-xs font-bold text-gray-700 uppercase tracking-wide mb-5">
+                    Πιστοποιήσεις & Παραδοχές
                   </p>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
                     {certifications.map((cert) => (
                       <div
                         key={cert.name}
-                        className={`${cert.color} rounded-lg p-4 flex items-center justify-center min-h-[70px] text-white text-sm font-bold text-center`}
+                        className="flex flex-col items-center justify-center p-4 border border-gray-200 rounded-lg hover:border-cyan transition-colors bg-gray-50"
                       >
-                        {cert.name}
+                        <div className="text-3xl mb-2">{cert.icon}</div>
+                        <span className="text-xs font-bold text-center text-gray-700">{cert.name}</span>
                       </div>
                     ))}
+                  </div>
+
+                  {/* Professional Processing Statement */}
+                  <div className="bg-gray-50 p-4 rounded-lg border-l-4 border-cyan">
+                    <p className="text-sm text-gray-700 leading-relaxed font-medium">
+                      Η επεξεργασία του προϊόντος έγινε στις εγκαταστάσεις της Καβάλας, με πιστοποίηση BRCGS και συμμόρφωση με όλες τις διεθνείς νόρμες ασφαλείας τροφίμων.
+                    </p>
                   </div>
                 </div>
               </div>
             </section>
 
             {/* Product Image */}
-            <section className="bg-gray-800 rounded-lg p-6 border border-gray-700 overflow-hidden">
+            <section className="bg-white rounded-lg p-6 lg:p-8 border border-gray-200 shadow-sm overflow-hidden">
               <img
                 src={mockData.productImage}
                 alt={mockData.productName}
@@ -173,80 +185,92 @@ export default function Index() {
               />
             </section>
 
-            {/* Traceability Data Block */}
-            <section className="bg-gray-800 rounded-lg p-6 border border-gray-700">
-              <h3 className="text-2xl font-bold text-cyan mb-6">Προέλευση</h3>
-              <div className="space-y-4">
+            {/* Traceability Data Block - Origin & Timeline */}
+            <section className="bg-white rounded-lg p-6 lg:p-8 border border-gray-200 shadow-sm">
+              <h3 className="text-2xl lg:text-3xl font-bold text-navy mb-1 pb-3 border-b-2 border-cyan inline-block">
+                Προέλευση
+              </h3>
+
+              <div className="mt-6 space-y-0">
                 {[
-                  { label: "Product Name", value: mockData.productName },
-                  { label: "Origin Method", value: mockData.originMethod },
-                  { label: "Geographic Origin", value: mockData.geographicOrigin },
-                  { label: "Harvest Date", value: mockData.harvestDate },
-                  { label: "Processing Date", value: mockData.processingDate },
-                  { label: "Best Before Date", value: mockData.bestBeforeDate },
+                  { label: "Όνομα Προϊόντος", value: mockData.productName },
+                  { label: "Μέθοδος Προέλευσης", value: mockData.originMethod },
+                  { label: "Γεωγραφική Προέλευση", value: mockData.geographicOrigin },
+                  { label: "Ημερομηνία Συγκομιδής", value: mockData.harvestDate },
+                  { label: "Ημερομηνία Επεξεργασίας", value: mockData.processingDate },
+                  { label: "Ημερομηνία Λήξης", value: mockData.bestBeforeDate },
                 ].map((item, idx) => (
-                  <div key={idx} className="flex justify-between items-start pb-4 border-b border-gray-700 last:border-b-0">
-                    <span className="text-sm font-medium text-gray-400">{item.label}</span>
-                    <span className="text-sm font-semibold text-white text-right">{item.value}</span>
+                  <div
+                    key={idx}
+                    className="flex justify-between items-center py-4 border-b border-gray-200 last:border-b-0 hover:bg-gray-50 px-2 rounded transition-colors"
+                  >
+                    <span className="text-sm font-bold text-navy min-w-fit">{item.label}</span>
+                    <span className="text-sm font-medium text-gray-700 text-right ml-4">{item.value}</span>
                   </div>
                 ))}
               </div>
             </section>
 
             {/* Technical Specifications */}
-            <section className="bg-gray-800 rounded-lg p-6 border border-gray-700">
-              <h3 className="text-2xl font-bold text-cyan mb-6">Τεχνικά Προδιαγραφές</h3>
-              <div className="space-y-4">
+            <section className="bg-white rounded-lg p-6 lg:p-8 border border-gray-200 shadow-sm">
+              <h3 className="text-2xl lg:text-3xl font-bold text-navy mb-1 pb-3 border-b-2 border-cyan inline-block">
+                Τεχνικές Προδιαγραφές
+              </h3>
+
+              <div className="mt-6 space-y-0">
                 {[
-                  { label: "Size Grade", value: mockData.sizeGrade },
-                  { label: "Format", value: mockData.format },
-                  { label: "Freezing Type", value: mockData.freezingType },
-                  { label: "Glaze Percentage", value: mockData.glazePercentage },
-                  { label: "Certification Status", value: mockData.certificationStatus },
+                  { label: "Κατηγορία Μεγέθους", value: mockData.sizeGrade },
+                  { label: "Μορφή Προϊόντος", value: mockData.format },
+                  { label: "Τύπος Κατάψυξης", value: mockData.freezingType },
+                  { label: "Ποσοστό Γλάζας", value: mockData.glazePercentage },
+                  { label: "Εγκατάσταση Επεξεργασίας", value: mockData.processingLocation },
+                  { label: "Κατάσταση Προέλευσης", value: mockData.originStatus },
                 ].map((item, idx) => (
-                  <div key={idx} className="flex justify-between items-start pb-4 border-b border-gray-700 last:border-b-0">
-                    <span className="text-sm font-medium text-gray-400">{item.label}</span>
-                    <span className="text-sm font-semibold text-white text-right">{item.value}</span>
+                  <div
+                    key={idx}
+                    className="flex justify-between items-center py-4 border-b border-gray-200 last:border-b-0 hover:bg-gray-50 px-2 rounded transition-colors"
+                  >
+                    <span className="text-sm font-bold text-navy min-w-fit">{item.label}</span>
+                    <span className="text-sm font-medium text-gray-700 text-right ml-4">{item.value}</span>
                   </div>
                 ))}
               </div>
 
               {/* Compliance Indicators */}
-              <div className="pt-6 space-y-3 border-t border-gray-700 mt-6">
+              <div className="pt-6 mt-6 space-y-3 border-t border-gray-200">
                 <div className="flex items-center gap-3">
-                  <CheckCircle2 size={18} className="text-green-400" />
-                  <span className="text-sm text-gray-300">Food Safety</span>
+                  <CheckCircle2 size={20} className="text-green-600 flex-shrink-0" />
+                  <span className="text-sm font-medium text-gray-700">Food Safety Certified</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <CheckCircle size={18} className="text-green-400" />
-                  <span className="text-sm text-gray-300">Valid until 2026</span>
+                  <CheckCircle2 size={20} className="text-green-600 flex-shrink-0" />
+                  <span className="text-sm font-medium text-gray-700">Valid until December 2026</span>
                 </div>
               </div>
             </section>
 
             {/* Call to Action */}
-            <section className="space-y-3 pb-6">
+            <section className="space-y-4 pb-8">
               <Button
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-6 text-base transition-colors"
-                onClick={() => alert("Contact Sales for Bulk Order")}
+                className="w-full bg-navy hover:bg-navy-light text-white font-bold py-7 text-base lg:text-lg rounded-lg shadow-md transition-all hover:shadow-lg"
+                onClick={() => alert("Redirecting to B2B Sales Contact")}
               >
-                Εξειδικευμένη για Συνεργασία Επιχειρήσεων B2B
+                Επικοινωνία για Παραγγελία Χονδρικής
               </Button>
 
               <Button
-                variant="outline"
-                className="w-full bg-white text-gray-900 hover:bg-gray-100 font-semibold py-6 text-base transition-colors border-0"
-                onClick={() => alert("View Full Product Catalog")}
+                className="w-full bg-white text-navy border-2 border-navy font-bold py-7 text-base lg:text-lg rounded-lg hover:bg-gray-50 transition-all"
+                onClick={() => alert("Redirecting to Product Catalog")}
               >
-                View Full Product Catalog
+                Προβολή Πλήρους Καταλόγου Προϊόντων
               </Button>
 
               <div className="text-center pt-2">
                 <a
                   href="#"
-                  className="text-sm text-cyan font-semibold hover:text-cyan-light transition-colors"
+                  className="text-sm font-semibold text-navy hover:text-cyan transition-colors underline"
                 >
-                  More Info
+                  Περισσότερες Πληροφορίες
                 </a>
               </div>
             </section>
